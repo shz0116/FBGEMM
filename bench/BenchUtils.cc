@@ -51,6 +51,27 @@ void randFill(aligned_vector<int64_t>& vec, int64_t low, int64_t high) {
   std::generate(vec.begin(), vec.end(), [&] { return dis(eng); });
 }
 
+aligned_vector<float> getRandomSparseVector(
+    unsigned size,
+    float fractionNonZeros /*= 1.0*/) {
+  aligned_vector<float> res(size);
+
+  std::random_device rd; 
+  std::mt19937 gen(345);
+
+  std::uniform_real_distribution<float> dis(0.0, 1.0);
+
+  for (auto& f : res) {
+    if (dis(gen) <= fractionNonZeros) {
+      f = dis(gen);
+    } else {
+      f = 0;
+    }   
+  }
+
+  return res;
+}
+
 void llc_flush(std::vector<char>& llc) {
   volatile char* data = llc.data();
   for (auto i = 0; i < llc.size(); i++) {
