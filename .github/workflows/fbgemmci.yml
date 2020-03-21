@@ -13,7 +13,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest] 
+        os: [ubuntu-latest] 
 
     steps:
     - uses: actions/checkout@v2
@@ -65,6 +65,7 @@ jobs:
         rm sde-external-8.35.0-2019-03-11-lin.tar.bz2
 
     - name: Setup tmate session
+      if: contains(runner.os, 'linux') 
       uses: mxschmitt/action-tmate@v2
 
     - name: Test SDE Phase1
