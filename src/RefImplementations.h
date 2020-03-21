@@ -124,6 +124,20 @@ FBGEMM_API void cblas_gemm_i64_i64acc_ref(
     std::int64_t* C,
     int ldc);
 
+FBGEMM_API void cblas_gemm_i64_i64acc_ref(
+    matrix_op_t transa,
+    matrix_op_t transb,
+    int M,
+    int N,
+    int K,
+    const std::int64_t* A,
+    int lda,
+    const std::int64_t* B,
+    int ldb,
+    bool accumulate,
+    std::int64_t* C,
+    int ldc);
+
 /**
  * @brief Reference implementation to compute row_offsets (sums of rows of A).
  */
